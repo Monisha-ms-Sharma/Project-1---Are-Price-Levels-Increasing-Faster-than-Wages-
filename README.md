@@ -1,13 +1,15 @@
-# Project-1---Are-Price-Levels-Increasing-Faster-than-Wages-
-# 📈 Are Price Levels Increasing Faster than Wages?
-### A Business Analytics Case Study Using Python
+# U.S. Inflation, Wage Growth & Purchasing Power Analysis
+
+## An End-to-End Business Analytics Case Study Using Python, SQL, APIs, Data Engineering, Data Visualization, and Statistical Analysis
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
+![SQL](https://img.shields.io/badge/SQL-Analytics-green)
+![REST API](https://img.shields.io/badge/REST-API-orange)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-success)
 ![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-orange)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-red)
 ![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Charts-purple)
-![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
+![Status](https://img.shields.io/badge/Project-In%20Progress-yellow)
 
 ---
 
@@ -17,145 +19,242 @@
 - Business Problem
 - Business Objectives
 - Business Questions
+- Project Architecture
 - Project Workflow
+- Project Roadmap
 - Technologies Used
 - Repository Structure
-- Dataset Description
+- Data Sources
 - Methodology
-- Key Deliverables
-- Results
-- Business Recommendations
-- Future Improvements
+- Key Features
+- Project Deliverables
+- Expected Outcomes
+- Future Enhancements
 - About the Author
 
 ---
 
 # Project Overview
 
-Inflation and wage growth are two of the most closely monitored economic indicators because they directly affect purchasing power and quality of life.
+Inflation and wage growth are two of the most important economic indicators because they directly influence purchasing power, consumer spending, business strategy, and economic policy.
 
-While wages may increase over time, inflation can reduce the value of those earnings if prices rise at a faster rate. Understanding the relationship between wage growth and inflation helps governments, businesses, and individuals make informed economic decisions.
+Although wages generally increase over time, rising prices can reduce the purchasing power of those earnings. Measuring **real wage growth** rather than **nominal wage growth** provides a more accurate picture of changes in living standards.
 
-This project analyzes official U.S. Bureau of Labor Statistics (BLS) data to determine whether wages have kept pace with inflation over time.
+This project analyzes official U.S. Bureau of Labor Statistics (BLS) data to determine whether wage growth has kept pace with inflation and how purchasing power has changed over time.
 
-The project demonstrates a complete Business Analytics workflow including:
+Unlike a traditional analytics project, this repository demonstrates an end-to-end Business Analytics workflow by combining:
 
 - Data Acquisition
-- Data Cleaning
+- ETL Pipeline Development
+- REST API Integration
+- Data Validation
 - Data Profiling
+- Data Cleaning
 - Feature Engineering
-- Exploratory Data Analysis
+- Exploratory Data Analysis (EDA)
 - Statistical Analysis
 - Data Visualization
 - Business Storytelling
 - Executive Reporting
 
+The project is designed using modular, production-style software engineering principles so that new economic datasets can be added with minimal code changes.
+
 ---
 
 # Business Problem
 
-Organizations, policy makers, and economists frequently ask:
+A fundamental economic question asked by businesses, policymakers, economists, and consumers is:
 
-> **Are wages increasing fast enough to keep up with rising prices?**
+> **Have wages increased fast enough to keep up with inflation, or has purchasing power declined over time?**
 
-Answering this question requires combining multiple economic datasets to evaluate inflation-adjusted wage growth, purchasing power, and long-term economic trends.
+Answering this question requires integrating multiple official economic datasets, calculating inflation-adjusted wages, and analyzing long-term trends to generate meaningful business insights.
 
 ---
 
 # Business Objectives
 
-This project aims to:
+The primary objectives of this project are to:
 
-- Measure inflation over time using CPI data.
-- Measure wage growth across industries.
-- Calculate real wage growth.
-- Measure purchasing power.
-- Compare inflation against wage growth.
-- Identify industries experiencing declining purchasing power.
-- Identify consumer spending categories with the highest inflation.
-- Present actionable business insights supported by data.
+- Measure inflation using the Consumer Price Index (CPI).
+- Measure wage growth using Average Hourly Earnings data.
+- Calculate inflation-adjusted (real) wage growth.
+- Analyze purchasing power over time.
+- Compare wage growth with inflation.
+- Identify periods where inflation exceeded wage growth.
+- Visualize long-term economic trends.
+- Generate business insights supported by statistical analysis.
+- Present findings through professional reports and visualizations.
 
 ---
 
 # Business Questions
 
-This analysis seeks to answer the following questions:
+This project seeks to answer the following questions:
 
 1. Has inflation increased faster than wages?
-2. Which years experienced the greatest decline in purchasing power?
-3. Which industries experienced the strongest wage growth?
-4. Which industries experienced declining real wages?
-5. Which consumer categories experienced the highest inflation?
-6. What recommendations can be made based on the findings?
+2. How has purchasing power changed over time?
+3. Which years experienced the largest gains or losses in purchasing power?
+4. Does wage growth consistently keep pace with inflation?
+5. What relationship exists between inflation and wage growth?
+6. What business and policy recommendations can be derived from the analysis?
+
+---
+
+# Project Architecture
+
+```
+                 U.S. Bureau of Labor Statistics (BLS)
+                               │
+                               ▼
+                    Data Acquisition Layer
+                     (Excel Files / REST API)
+                               │
+                               ▼
+                     download_data.py (ETL)
+                               │
+                               ▼
+                          Raw Data (CSV)
+                               │
+                               ▼
+                       Data Validation Layer
+                               │
+                               ▼
+                        Processed Data
+                               │
+                               ▼
+                     Feature Engineering
+                               │
+                               ▼
+                 Exploratory Data Analysis
+                               │
+                               ▼
+                    Statistical Analysis
+                               │
+                               ▼
+                      Business Insights
+                               │
+                               ▼
+                     Executive Reporting
+```
+
+The architecture separates **data acquisition** from **data analysis**, making the project reusable, maintainable, and easy to extend.
 
 ---
 
 # Project Workflow
 
 ```
-
 Business Problem
-
-↓
-
+        │
+        ▼
 Data Acquisition
-
-↓
-
+        │
+        ▼
 Data Profiling
-
-↓
-
+        │
+        ▼
+Data Validation
+        │
+        ▼
 Data Cleaning
-
-↓
-
+        │
+        ▼
 Feature Engineering
-
-↓
-
+        │
+        ▼
 Exploratory Data Analysis
-
-↓
-
+        │
+        ▼
 Statistical Analysis
-
-↓
-
-Visualization
-
-↓
-
+        │
+        ▼
+Data Visualization
+        │
+        ▼
 Business Insights
-
-↓
-
-Recommendations
-
+        │
+        ▼
+Executive Report
 ```
+
+---
+
+# Project Roadmap
+
+The project is developed in incremental phases.
+
+## Phase A — Data Acquisition
+
+- Configure project structure
+- Download official BLS datasets
+- Store raw datasets
+- Validate downloaded data
+
+## Phase B — Data Profiling
+
+- Inspect dataset structure
+- Identify missing values
+- Detect duplicates
+- Validate schema
+
+## Phase C — Data Cleaning
+
+- Convert data types
+- Standardize formats
+- Handle missing values
+- Prepare analysis-ready datasets
+
+## Phase D — Feature Engineering
+
+- Calculate Inflation Rate
+- Calculate Wage Growth
+- Calculate Real Wage Growth
+- Calculate Purchasing Power Index
+
+## Phase E — Exploratory Data Analysis
+
+- Time-series analysis
+- Trend visualization
+- Correlation analysis
+- Distribution analysis
+
+## Phase F — Business Insights
+
+- Executive Summary
+- Key Findings
+- Recommendations
+- Business Conclusions
 
 ---
 
 # Technologies Used
 
-## Programming
+## Programming Languages
 
 - Python
+- SQL
 
 ## Python Libraries
 
 - Pandas
 - NumPy
+- Requests
 - Matplotlib
 - Plotly
-- Scikit-Learn
 - SciPy
-- Requests
+- Scikit-learn
+- Logging
+- JSON
 
-## Development Environment
+## Data Sources
 
-- Jupyter Notebook
+- U.S. Bureau of Labor Statistics (BLS)
+
+## Development Tools
+
 - Visual Studio Code
+- Jupyter Notebook
+- Git
 - GitHub
 
 ---
@@ -163,140 +262,162 @@ Recommendations
 # Repository Structure
 
 ```
+US-Inflation-Wage-Growth-Analysis/
 
-Are-Price-Levels-Increasing-Faster-than-Wages/
-
+│
 ├── README.md
 ├── requirements.txt
 ├── LICENSE
-
+│
 ├── data/
-│ ├── raw/
-│ ├── processed/
-│ └── README.md
-
+│   ├── raw/
+│   ├── processed/
+│   └── README.md
+│
+├── docs/
+│   ├── Methodology.md
+│   └── Data_Dictionary.md
+│
 ├── notebooks/
-│ └── Inflation_vs_Wage_Growth.ipynb
-
+│   ├── 01_Data_Profiling.ipynb
+│   ├── 02_Data_Cleaning.ipynb
+│   ├── 03_Feature_Engineering.ipynb
+│   ├── 04_EDA.ipynb
+│   └── 05_Business_Insights.ipynb
+│
 ├── src/
-│ ├── config.py
-│ ├── data_loader.py
-│ ├── preprocessing.py
-│ ├── feature_engineering.py
-│ ├── visualization.py
-│ └── utils.py
-
-├── images/
-
+│   ├── config.py
+│   ├── download_data.py
+│   ├── data_loader.py
+│   ├── data_validation.py
+│   ├── preprocessing.py
+│   ├── feature_engineering.py
+│   ├── visualization.py
+│   ├── statistical_analysis.py
+│   └── utils.py
+│
 ├── reports/
-│ └── Executive_Summary.pdf
-
+│   ├── Executive_Summary.pdf
+│   └── Technical_Report.pdf
+│
+├── images/
+│
 └── presentation/
-└── Business_Presentation.pptx
-
+    └── Business_Presentation.pptx
 ```
 
 ---
 
-# Dataset Description
+# Data Sources
 
-This project uses publicly available datasets published by the U.S. Bureau of Labor Statistics (BLS).
+This project uses publicly available datasets from the U.S. Bureau of Labor Statistics (BLS).
 
-Primary datasets include:
+## Phase 1
 
-- Consumer Price Index (CPI)
-- Current Employment Statistics (CES)
+- Consumer Price Index (CPI-U)
 - Average Hourly Earnings
-- Employment Statistics
+
+## Phase 2
+
+- Unemployment Rate
+- Employment Level
+
+Initially, the project reads official BLS Excel files to establish a stable analytics workflow. A later enhancement replaces the manual data acquisition process with an automated REST API pipeline without requiring changes to the downstream analysis.
 
 ---
 
 # Methodology
 
-The project follows the standard Data Analytics lifecycle:
+This project follows an end-to-end Business Analytics lifecycle.
 
 1. Acquire official economic datasets
-2. Validate data quality
-3. Clean and preprocess data
-4. Engineer analytical features
-5. Perform exploratory data analysis
-6. Visualize key trends
+2. Validate incoming data
+3. Profile dataset quality
+4. Clean and preprocess data
+5. Engineer analytical features
+6. Perform exploratory data analysis
 7. Conduct statistical analysis
-8. Interpret business results
-9. Develop actionable recommendations
+8. Generate business insights
+9. Develop executive recommendations
 
 ---
 
-# Key Deliverables
+# Key Features
 
-- Executive Summary
-- Business Report
-- Interactive Visualizations
+- Modular project architecture
+- Reusable ETL pipeline
+- REST API integration
+- Data validation
+- Logging and error handling
+- Feature engineering
+- Statistical analysis
+- Interactive visualizations
+- Executive reporting
+- Reproducible workflow
+
+---
+
+# Project Deliverables
+
+- Automated ETL Pipeline
+- Clean Analytical Dataset
+- Data Quality Report
+- Exploratory Data Analysis
 - Statistical Analysis
-- Purchasing Power Analysis
-- Inflation Analysis
-- Wage Growth Analysis
-- Business Recommendations
+- Executive Summary
+- Technical Report
+- Business Presentation
 
 ---
 
-# Expected Results
+# Expected Outcomes
 
-This analysis provides insights into:
+The project will provide insights into:
 
-- Inflation trends over time
+- Inflation trends
 - Wage growth trends
 - Purchasing power changes
-- Industry comparisons
-- Inflation by consumer category
 - Real wage growth
-- Long-term economic trends
+- Long-term economic patterns
+- Business implications of inflation
 
 ---
 
-# Business Recommendations
+# Future Enhancements
 
-Based on the analysis, recommendations will include:
+Future versions of the project will include:
 
-- Monitoring inflation-adjusted wages instead of nominal wages.
-- Identifying industries experiencing declining purchasing power.
-- Supporting compensation strategies using real wage growth.
-- Monitoring consumer categories with persistent inflation.
-
----
-
-# Future Improvements
-
-Future versions of this project may include:
-
-- Forecasting future inflation
+- Automated BLS API integration
+- Scheduled ETL pipeline
+- Time-series forecasting
 - Machine Learning models
-- Time Series Forecasting
-- Interactive Dashboards
-- Power BI Dashboard
-- Tableau Dashboard
-- Streamlit Application
+- Interactive Power BI dashboard
+- Tableau dashboard
+- Streamlit web application
+- Docker deployment
+- CI/CD with GitHub Actions
 
 ---
 
 # About the Author
 
-**Monisha Sharma**
+## Monisha Sharma
 
-Business Intelligence | Data Analytics | Data Governance | Master Data Management (MDM)
+**Business Intelligence | Business Analytics | Data Engineering | Data Governance | Master Data Management (MDM)**
 
 ### Technical Skills
 
 - Python
 - SQL
+- REST APIs
 - Power BI
 - Tableau
-- R
+- Data Engineering
+- ETL Pipelines
 - Data Governance
-- Master Data Management
-- Data Analytics
 - Business Intelligence
+- Statistical Analysis
 
 ---
 
-⭐ If you found this project useful, please consider giving it a star.
+⭐ If you found this project helpful, please consider giving it a star!
