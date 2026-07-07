@@ -12,39 +12,25 @@ Monisha Sharma
 Description:
 Reusable visualization functions for Exploratory Data Analysis.
 
-Current Visualizations
-----------------------
-• CPI Trend
-
-Future Visualizations
----------------------
-• Wage Trend
-• Inflation vs Wage
+Visualizations
+--------------
+• Annual Average CPI
+• Annual Inflation Rate
+• Annual Average Wage
+• Annual Wage Growth
+• Inflation vs Wage Growth
 • Real Wage Growth
-• Correlation Heatmap
-• Histograms
-• Boxplots
+• Employment Trend
+• Unemployment Trend
+
 ============================================================
 """
-
-from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from src.config import IMAGES_DIR
 from src.logger import logger
-
-
-# ==========================================================
-# OUTPUT DIRECTORY
-# ==========================================================
-
-IMAGE_DIR = Path("images")
-
-IMAGE_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
 
 
 # ==========================================================
@@ -58,7 +44,7 @@ def save_plot(
     Save the current matplotlib figure.
     """
 
-    output_file = IMAGE_DIR / filename
+    output_file = IMAGES_DIR / filename
 
     plt.savefig(
         output_file,
@@ -92,7 +78,7 @@ def plot_cpi_trend(
         annual_cpi["Year"],
         annual_cpi["Average CPI"],
         marker="o",
-        linewidth=2
+        linewidth=2,
     )
 
     plt.title(
@@ -105,172 +91,313 @@ def plot_cpi_trend(
 
     plt.grid(True)
 
+    plt.tight_layout()
+
     save_plot(
-        "annual_cpi_trend.png"
+        "annual_average_cpi.png"
     )
 
-    plt.show()
+    plt.close()
 
     logger.info(
         "CPI Trend chart created."
     )
 
-def plot_annual_wages(df):
+
+# ==========================================================
+# ANNUAL INFLATION RATE
+# ==========================================================
+
+def plot_annual_inflation_rate(
+    annual_cpi: pd.DataFrame
+) -> None:
     """
-    Plot Annual Average Hourly Wage Trend.
+    Plot Annual Inflation Rate.
     """
 
-    logger.info("Creating Annual Wage Trend chart...")
+    logger.info(
+        "Creating Annual Inflation Rate chart..."
+    )
 
     plt.figure(figsize=(10, 6))
 
     plt.plot(
-        df["Year"],
-        df["Average Hourly Wage"],
+        annual_cpi["Year"],
+        annual_cpi["Annual Inflation Rate (%)"],
         marker="o",
         linewidth=2,
     )
 
-    plt.title("Average Hourly Wage (2016–2026)")
+    plt.title(
+        "Annual Inflation Rate"
+    )
+
     plt.xlabel("Year")
-    plt.ylabel("Average Hourly Wage ($/hour)")
+
+    plt.ylabel("Percent")
 
     plt.grid(True)
 
     plt.tight_layout()
 
-    output_path = "images/annual_wage_trend.png"
-
-    plt.savefig(output_path)
+    save_plot(
+        "annual_inflation_rate.png"
+    )
 
     plt.close()
 
-    logger.info(f"Saved plot: {output_path}")
-    logger.info("Annual Wage Trend chart created.")
+    logger.info(
+        "Annual Inflation Rate chart created."
+    )
 
-def plot_inflation_vs_wages(df):
+# ==========================================================
+# ANNUAL WAGE TREND
+# ==========================================================
+
+def plot_annual_wages(
+    annual_wages: pd.DataFrame
+) -> None:
     """
-    Plot Annual Wage Growth vs Inflation Rate.
+    Plot Annual Average Hourly Wage Trend.
     """
 
-    logger.info("Creating Inflation vs Wage Growth chart...")
+    logger.info(
+        "Creating Annual Wage Trend chart..."
+    )
 
     plt.figure(figsize=(10, 6))
 
     plt.plot(
-        df["Year"],
-        df["Annual Wage Growth (%)"],
+        annual_wages["Year"],
+        annual_wages["Average Hourly Wage"],
+        marker="o",
+        linewidth=2,
+    )
+
+    plt.title(
+        "Average Annual Hourly Wage"
+    )
+
+    plt.xlabel("Year")
+
+    plt.ylabel(
+        "Average Hourly Wage ($)"
+    )
+
+    plt.grid(True)
+
+    plt.tight_layout()
+
+    save_plot(
+        "annual_average_wage.png"
+    )
+
+    plt.close()
+
+    logger.info(
+        "Annual Wage Trend chart created."
+    )
+
+
+# ==========================================================
+# ANNUAL WAGE GROWTH
+# ==========================================================
+
+def plot_annual_wage_growth(
+    annual_wages: pd.DataFrame
+) -> None:
+    """
+    Plot Annual Wage Growth.
+    """
+
+    logger.info(
+        "Creating Annual Wage Growth chart..."
+    )
+
+    plt.figure(figsize=(10, 6))
+
+    plt.plot(
+        annual_wages["Year"],
+        annual_wages["Annual Wage Growth (%)"],
+        marker="o",
+        linewidth=2,
+    )
+
+    plt.title(
+        "Annual Wage Growth"
+    )
+
+    plt.xlabel("Year")
+
+    plt.ylabel(
+        "Percent"
+    )
+
+    plt.grid(True)
+
+    plt.tight_layout()
+
+    save_plot(
+        "annual_wage_growth.png"
+    )
+
+    plt.close()
+
+    logger.info(
+        "Annual Wage Growth chart created."
+    )
+
+
+# ==========================================================
+# INFLATION VS WAGE GROWTH
+# ==========================================================
+
+def plot_inflation_vs_wages(
+    merged_df: pd.DataFrame
+) -> None:
+    """
+    Plot Annual Wage Growth vs Inflation Rate.
+    """
+
+    logger.info(
+        "Creating Inflation vs Wage Growth chart..."
+    )
+
+    plt.figure(figsize=(10, 6))
+
+    plt.plot(
+        merged_df["Year"],
+        merged_df["Annual Wage Growth (%)"],
         marker="o",
         linewidth=2,
         label="Wage Growth",
     )
 
     plt.plot(
-        df["Year"],
-        df["Annual Inflation Rate (%)"],
+        merged_df["Year"],
+        merged_df["Annual Inflation Rate (%)"],
         marker="s",
         linewidth=2,
         label="Inflation",
     )
 
-    plt.title("Annual Wage Growth vs Inflation")
+    plt.title(
+        "Annual Wage Growth vs Inflation"
+    )
 
     plt.xlabel("Year")
-    plt.ylabel("Percent")
 
-    plt.grid(True)
+    plt.ylabel("Percent")
 
     plt.legend()
 
+    plt.grid(True)
+
     plt.tight_layout()
 
-    output_path = "images/inflation_vs_wage_growth.png"
-
-    plt.savefig(output_path)
+    save_plot(
+        "inflation_vs_wage_growth.png"
+    )
 
     plt.close()
 
-    logger.info(f"Saved plot: {output_path}")
-    logger.info("Inflation vs Wage Growth chart created.")
+    logger.info(
+        "Inflation vs Wage Growth chart created."
+    )
 
-def plot_real_wage_growth(df):
+# ==========================================================
+# REAL WAGE GROWTH
+# ==========================================================
+
+def plot_real_wage_growth(
+    merged_df: pd.DataFrame
+) -> None:
     """
     Plot Real Wage Growth (Purchasing Power).
     """
 
-    logger.info("Creating Real Wage Growth chart...")
-
-    import matplotlib.pyplot as plt
+    logger.info(
+        "Creating Real Wage Growth chart..."
+    )
 
     plt.figure(figsize=(10, 6))
 
     plt.plot(
-        df["Year"],
-        df["Real Wage Growth (%)"],
+        merged_df["Year"],
+        merged_df["Real Wage Growth (%)"],
         marker="o",
-        linewidth=2
+        linewidth=2,
     )
 
     plt.axhline(
         y=0,
         linestyle="--",
-        linewidth=1
+        linewidth=1,
     )
 
-    plt.title("Real Wage Growth (Purchasing Power)")
+    plt.title(
+        "Real Wage Growth (Purchasing Power)"
+    )
+
     plt.xlabel("Year")
-    plt.ylabel("Real Wage Growth (%)")
+
+    plt.ylabel(
+        "Real Wage Growth (%)"
+    )
 
     plt.grid(True)
 
-    save_plot("real_wage_growth.png")
+    plt.tight_layout()
+
+    save_plot(
+        "real_wage_growth.png"
+    )
 
     plt.close()
 
-    logger.info("Real Wage Growth chart created.")
+    logger.info(
+        "Real Wage Growth chart created."
+    )
+
 
 # ==========================================================
 # EMPLOYMENT TREND
 # ==========================================================
 
 def plot_employment_trend(
-    employment_df
-):
+    employment_df: pd.DataFrame
+) -> None:
     """
     Plot Annual Employment Trend.
     """
 
-    logger.info("Creating Employment Trend chart...")
-
-    import matplotlib.pyplot as plt
-    import pandas as pd
-
-    # ---------------------------------------------
-    # Prepare Data
-    # ---------------------------------------------
+    logger.info(
+        "Creating Employment Trend chart..."
+    )
 
     employment = employment_df.copy()
 
     month_columns = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan", "Feb", "Mar", "Apr",
+        "May", "Jun", "Jul", "Aug",
+        "Sep", "Oct", "Nov", "Dec"
     ]
 
     employment = employment.melt(
         id_vars="Year",
         value_vars=month_columns,
         var_name="Month",
-        value_name="Employment"
-    )
-
-    employment["Employment"] = pd.to_numeric(
-        employment["Employment"],
-        errors="coerce"
+        value_name="Employment",
     )
 
     employment["Year"] = pd.to_numeric(
         employment["Year"],
-        errors="coerce"
+        errors="coerce",
+    )
+
+    employment["Employment"] = pd.to_numeric(
+        employment["Employment"],
+        errors="coerce",
     )
 
     annual = (
@@ -281,78 +408,78 @@ def plot_employment_trend(
         })
     )
 
-    # ---------------------------------------------
-    # Plot
-    # ---------------------------------------------
-
     plt.figure(figsize=(10, 6))
 
     plt.plot(
         annual["Year"],
         annual["Employment"],
         marker="o",
-        linewidth=2
+        linewidth=2,
     )
 
     plt.title(
-        "Annual Employment Trend",
-        fontsize=15,
-        weight="bold"
+        "Annual Employment Trend"
     )
 
     plt.xlabel("Year")
-    plt.ylabel("Employment (Thousands)")
+
+    plt.ylabel(
+        "Employment (Thousands)"
+    )
 
     plt.grid(True)
 
+    plt.tight_layout()
+
     save_plot(
-        "employment_trend.png"
+        "annual_employment.png"
     )
 
-    logger.info("Employment Trend chart created.")
+    plt.close()
+
+    logger.info(
+        "Employment Trend chart created."
+    )
+
 
 # ==========================================================
 # UNEMPLOYMENT TREND
 # ==========================================================
 
 def plot_unemployment_trend(
-    unemployment_df
-):
+    unemployment_df: pd.DataFrame
+) -> None:
     """
     Plot Annual Unemployment Rate Trend.
     """
 
-    logger.info("Creating Unemployment Trend chart...")
-
-    import matplotlib.pyplot as plt
-    import pandas as pd
-
-    # ---------------------------------------------
-    # Prepare Data
-    # ---------------------------------------------
+    logger.info(
+        "Creating Unemployment Trend chart..."
+    )
 
     unemployment = unemployment_df.copy()
 
     month_columns = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan", "Feb", "Mar", "Apr",
+        "May", "Jun", "Jul", "Aug",
+        "Sep", "Oct", "Nov", "Dec"
     ]
 
     unemployment = unemployment.melt(
         id_vars="Year",
         value_vars=month_columns,
         var_name="Month",
-        value_name="Unemployment Rate"
+        value_name="Unemployment Rate",
     )
 
     unemployment["Year"] = pd.to_numeric(
         unemployment["Year"],
-        errors="coerce"
+        errors="coerce",
     )
 
     unemployment["Unemployment Rate"] = pd.to_numeric(
         unemployment["Unemployment Rate"],
-        errors="coerce"
+        errors="coerce",
     )
 
     annual = (
@@ -363,32 +490,122 @@ def plot_unemployment_trend(
         })
     )
 
-    # ---------------------------------------------
-    # Plot
-    # ---------------------------------------------
-
     plt.figure(figsize=(10, 6))
 
     plt.plot(
         annual["Year"],
         annual["Unemployment Rate"],
         marker="o",
-        linewidth=2
+        linewidth=2,
     )
 
     plt.title(
-        "Annual Unemployment Rate",
-        fontsize=15,
-        weight="bold"
+        "Annual Unemployment Rate"
     )
 
     plt.xlabel("Year")
-    plt.ylabel("Unemployment Rate (%)")
+
+    plt.ylabel(
+        "Unemployment Rate (%)"
+    )
 
     plt.grid(True)
 
+    plt.tight_layout()
+
     save_plot(
-        "unemployment_trend.png"
+        "annual_unemployment.png"
     )
 
-    logger.info("Unemployment Trend chart created.")
+    plt.close()
+
+    logger.info(
+        "Unemployment Trend chart created."
+    )
+
+# ==========================================================
+# GENERATE ALL VISUALIZATIONS
+# ==========================================================
+
+def generate_all_visualizations(
+    annual_cpi: pd.DataFrame,
+    annual_wages: pd.DataFrame,
+    merged_df: pd.DataFrame,
+    employment_df: pd.DataFrame,
+    unemployment_df: pd.DataFrame,
+) -> None:
+    """
+    Generate all project visualizations.
+
+    Parameters
+    ----------
+    annual_cpi : pd.DataFrame
+        Annual CPI dataset with Inflation Rate.
+
+    annual_wages : pd.DataFrame
+        Annual Wage dataset with Wage Growth.
+
+    merged_df : pd.DataFrame
+        Combined CPI and Wage dataset including
+        Real Wage Growth.
+
+    employment_df : pd.DataFrame
+        Monthly employment dataset.
+
+    unemployment_df : pd.DataFrame
+        Monthly unemployment dataset.
+    """
+
+    logger.info("=" * 60)
+    logger.info("Generating all visualizations...")
+    logger.info("=" * 60)
+
+    # ------------------------------------------------------
+    # CPI
+    # ------------------------------------------------------
+
+    plot_cpi_trend(
+        annual_cpi
+    )
+
+    plot_annual_inflation_rate(
+        annual_cpi
+    )
+
+    # ------------------------------------------------------
+    # Wages
+    # ------------------------------------------------------
+
+    plot_annual_wages(
+        annual_wages
+    )
+
+    plot_annual_wage_growth(
+        annual_wages
+    )
+
+    plot_inflation_vs_wages(
+        merged_df
+    )
+
+    plot_real_wage_growth(
+        merged_df
+    )
+
+    # ------------------------------------------------------
+    # Employment
+    # ------------------------------------------------------
+
+    plot_employment_trend(
+        employment_df
+    )
+
+    plot_unemployment_trend(
+        unemployment_df
+    )
+
+    logger.info("=" * 60)
+    logger.info(
+        "All visualizations generated successfully."
+    )
+    logger.info("=" * 60)
