@@ -172,6 +172,74 @@ Each stage produces intermediate analytical outputs that feed the next stage, ul
 
 ---
 
+# Featured Visualizations
+
+The analytics pipeline automatically generates a collection of publication-quality charts that illustrate key economic trends and support the executive findings.
+
+The visualizations below highlight three of the most important analyses produced by the project.
+
+---
+
+## 📈 Annual CPI Trend
+
+The Consumer Price Index (CPI) measures changes in the average prices paid by consumers over time. This visualization illustrates the long-term inflation trend across the analysis period.
+
+<p align="center">
+  <a href="images/annual_average_cpi.png">
+    <img
+      src="images/annual_average_cpi.png"
+      alt="Annual Average CPI Trend"
+      width="900">
+  </a>
+</p>
+
+---
+
+## ⚖️ Inflation vs. Wage Growth
+
+One of the primary objectives of this project is to compare wage growth with inflation. This visualization helps determine whether wages have kept pace with rising consumer prices over time.
+
+<p align="center">
+  <a href="images/inflation_vs_wage_growth.png">
+    <img
+      src="images/inflation_vs_wage_growth.png"
+      alt="Inflation vs Wage Growth"
+      width="900">
+  </a>
+</p>
+
+---
+
+## 🔥 Correlation Heatmap
+
+The correlation heatmap summarizes the relationships between key economic indicators, including inflation, wages, and purchasing power. It provides a statistical overview of how these variables move together.
+
+<p align="center">
+  <a href="images/correlation_heatmap.png">
+    <img
+      src="images/correlation_heatmap.png"
+      alt="Correlation Heatmap"
+      width="900">
+  </a>
+</p>
+
+---
+
+## Additional Visualizations
+
+The project also generates the following charts automatically during pipeline execution:
+
+- Annual Wage Trend
+- Annual Inflation Rate
+- Annual Wage Growth
+- Real Wage Growth
+- Employment Trend
+- Unemployment Trend
+
+All generated figures are stored in the `images/` directory.
+
+---
+
 # Repository Structure
 
 ```text
@@ -386,50 +454,6 @@ The project automatically generates the following charts.
 | Employment Trend | `annual_employment.png` |
 | Unemployment Trend | `annual_unemployment.png` |
 | Correlation Heatmap | `correlation_heatmap.png` |
-
----
-
-# Sample Visualizations
-
-## Annual CPI
-
-![Annual CPI](images/annual_average_cpi.png)
-
----
-
-## Average Hourly Wage
-
-![Average Wage](images/annual_average_wage.png)
-
----
-
-## Inflation vs Wage Growth
-
-![Inflation vs Wage Growth](images/inflation_vs_wage_growth.png)
-
----
-
-## Real Wage Growth
-
-![Real Wage Growth](images/real_wage_growth.png)
-
----
-
-## Employment Trend
-
-![Employment](images/annual_employment.png)
-
----
-
-## Unemployment Trend
-
-![Unemployment](images/annual_unemployment.png)
-
----
-
-## Correlation Heatmap
-
-![Correlation Heatmap](images/correlation_heatmap.png)
 
 ---
 
