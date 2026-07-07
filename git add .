@@ -1,0 +1,234 @@
+[1mdiff --git a/requirements.txt b/requirements.txt[m
+[1mindex 45dd474..3b2c27b 100644[m
+[1m--- a/requirements.txt[m
+[1m+++ b/requirements.txt[m
+[36m@@ -7,4 +7,5 @@[m [mrequests>=2.32.0[m
+ openpyxl>=3.1.5[m
+ jupyter>=1.1.1[m
+ notebook>=7.4.4[m
+[31m-pytest>=8.3.0[m
+\ No newline at end of file[m
+[32m+[m[32mpytest>=8.3.0[m
+[32m+[m[32mreportlab[m
+\ No newline at end of file[m
+[1mdiff --git a/src/feature_engineering.py b/src/feature_engineering.py[m
+[1mindex d2d4fb4..e32309c 100644[m
+[1m--- a/src/feature_engineering.py[m
+[1m+++ b/src/feature_engineering.py[m
+[36m@@ -377,54 +377,25 @@[m [mdef merge_cpi_wages([m
+ # ==========================================================[m
+ [m
+ def calculate_real_wage_growth([m
+[31m-    merged_df: pd.DataFrame,[m
+[31m-    annual_wage_growth: pd.DataFrame,[m
+[31m-    annual_inflation: pd.DataFrame[m
+[32m+[m[32m    merged_df: pd.DataFrame[m
+ ) -> pd.DataFrame:[m
+     """[m
+[31m-    Calculate Real Wage Growth after adjusting[m
+[31m-    for inflation.[m
+[32m+[m[32m    Calculate Real Wage Growth after adjusting for inflation.[m
+ [m
+[31m-    Formula:[m
+[32m+[m[32m    Formula[m
+ [m
+         ((1 + Wage Growth / 100)[m
+          /[m
+          (1 + Inflation / 100)[m
+[31m-         - 1) * 100[m
+[32m+[m[32m         - 1) × 100[m
+     """[m
+ [m
+     logger.info("Calculating Real Wage Growth...")[m
+ [m
+[32m+[m[32m    # Create a copy of the merged dataset[m
+     df = merged_df.copy()[m
+ [m
+[31m-    # ------------------------------------------------------[m
+[31m-    # Merge Wage Growth[m
+[31m-    # ------------------------------------------------------[m
+[31m-[m
+[31m-    df = df.merge([m
+[31m-        annual_wage_growth[[m
+[31m-            ["Year", "Annual Wage Growth (%)"][m
+[31m-        ],[m
+[31m-        on="Year",[m
+[31m-        how="left"[m
+[31m-    )[m
+[31m-[m
+[31m-    # ------------------------------------------------------[m
+[31m-    # Merge Inflation[m
+[31m-    # ------------------------------------------------------[m
+[31m-[m
+[31m-    df = df.merge([m
+[31m-        annual_inflation[[m
+[31m-            ["Year", "Annual Inflation Rate (%)"][m
+[31m-        ],[m
+[31m-        on="Year",[m
+[31m-        how="left"[m
+[31m-    )[m
+[31m-[m
+[31m-    # ------------------------------------------------------[m
+     # Ensure numeric columns[m
+[31m-    # ------------------------------------------------------[m
+[31m-[m
+     numeric_columns = [[m
+         "Average CPI",[m
+         "Average Hourly Wage",[m
+[36m@@ -438,10 +409,7 @@[m [mdef calculate_real_wage_growth([m
+             errors="coerce"[m
+         )[m
+ [m
+[31m-    # ------------------------------------------------------[m
+[31m-    # Real Wage Growth[m
+[31m-    # ------------------------------------------------------[m
+[31m-[m
+[32m+[m[32m    # Calculate Real Wage Growth[m
+     df["Real Wage Growth (%)"] = ([m
+         ([m
+             (1 + df["Annual Wage Growth (%)"] / 100)[m
+[36m@@ -453,4 +421,133 @@[m [mdef calculate_real_wage_growth([m
+ [m
+     logger.info("Real Wage Growth calculated.")[m
+ [m
+[31m-    return df[m
+\ No newline at end of file[m
+[32m+[m[32m    return df[m
+[32m+[m
+[32m+[m[32mdef reshape_employment_data(df: pd.DataFrame) -> pd.DataFrame:[m
+[32m+[m[32m    """[m
+[32m+[m[32m    Reshape Employment dataset from wide format to long format.[m
+[32m+[m[32m    """[m
+[32m+[m
+[32m+[m[32m    logger.info("Reshaping Employment dataset...")[m
+[32m+[m
+[32m+[m[32m    month_columns = list(df.columns[1:13])[m
+[32m+[m
+[32m+[m[32m    employment = df.melt([m
+[32m+[m[32m        id_vars="Year",[m
+[32m+[m[32m        value_vars=month_columns,[m
+[32m+[m[32m        var_name="Month",[m
+[32m+[m[32m        value_name="Employment"[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    employment["Employment"] = pd.to_numeric([m
+[32m+[m[32m        employment["Employment"],[m
+[32m+[m[32m        errors="coerce"[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        f"Employment reshaped to {len(employment)} rows."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    return employment[m
+[32m+[m
+[32m+[m
+[32m+[m[32mdef calculate_annual_average_employment([m
+[32m+[m[32m    df: pd.DataFrame[m
+[32m+[m[32m) -> pd.DataFrame:[m
+[32m+[m[32m    """[m
+[32m+[m[32m    Calculate Annual Average Employment.[m
+[32m+[m[32m    """[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        "Calculating Annual Average Employment..."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    annual = ([m
+[32m+[m[32m        df.groupby("Year", as_index=False)["Employment"][m
+[32m+[m[32m        .mean()[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    annual.rename([m
+[32m+[m[32m        columns={[m
+[32m+[m[32m            "Employment": "Average Employment"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        inplace=True[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    annual["Average Employment"] = ([m
+[32m+[m[32m        annual["Average Employment"][m
+[32m+[m[32m        .round(2)[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        f"Created Annual Employment table ({len(annual)} rows)."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    return annual[m
+[32m+[m
+[32m+[m[32mdef reshape_unemployment_data([m
+[32m+[m[32m    df: pd.DataFrame[m
+[32m+[m[32m) -> pd.DataFrame:[m
+[32m+[m[32m    """[m
+[32m+[m[32m    Reshape Unemployment dataset from wide format to long format.[m
+[32m+[m[32m    """[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        "Reshaping Unemployment dataset..."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    month_columns = list(df.columns[1:13])[m
+[32m+[m
+[32m+[m[32m    unemployment = df.melt([m
+[32m+[m[32m        id_vars="Year",[m
+[32m+[m[32m        value_vars=month_columns,[m
+[32m+[m[32m        var_name="Month",[m
+[32m+[m[32m        value_name="Unemployment Rate"[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    unemployment["Unemployment Rate"] = pd.to_numeric([m
+[32m+[m[32m        unemployment["Unemployment Rate"],[m
+[32m+[m[32m        errors="coerce"[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        f"Unemployment reshaped to {len(unemployment)} rows."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    return unemployment[m
+[32m+[m
+[32m+[m
+[32m+[m[32mdef calculate_annual_average_unemployment([m
+[32m+[m[32m    df: pd.DataFrame[m
+[32m+[m[32m) -> pd.DataFrame:[m
+[32m+[m[32m    """[m
+[32m+[m[32m    Calculate Annual Average Unemployment Rate.[m
+[32m+[m[32m    """[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        "Calculating Annual Average Unemployment..."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    annual = ([m
+[32m+[m[32m        df.groupby("Year", as_index=False)["Unemployment Rate"][m
+[32m+[m[32m        .mean()[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    annual.rename([m
+[32m+[m[32m        columns={[m
+[32m+[m[32m            "Unemployment Rate":[m
+[32m+[m[32m            "Average Unemployment Rate"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        inplace=True[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    annual["Average Unemployment Rate"] = ([m
+[32m+[m[32m        annual["Average Unemployment Rate"][m
+[32m+[m[32m        .round(2)[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    logger.info([m
+[32m+[m[32m        f"Created Annual Unemployment table ({len(annual)} rows)."[m
+[32m+[m[32m    )[m
+[32m+[m
+[32m+[m[32m    return annual[m
+\ No newline at end of file[m
+[1mdiff --git a/src/statistical_analysis.py b/src/statistical_analysis.py[m
+[1mindex e69de29..0086005 100644[m
+[1m--- a/src/statistical_analysis.py[m
+[1m+++ b/src/statistical_analysis.py[m
+[36m@@ -0,0 +1,77 @@[m
+[32m+[m[32m"""[m
+[32m+[m[32m============================================================[m
+[32m

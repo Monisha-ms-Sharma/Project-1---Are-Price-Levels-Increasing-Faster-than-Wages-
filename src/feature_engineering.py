@@ -377,54 +377,25 @@ def merge_cpi_wages(
 # ==========================================================
 
 def calculate_real_wage_growth(
-    merged_df: pd.DataFrame,
-    annual_wage_growth: pd.DataFrame,
-    annual_inflation: pd.DataFrame
+    merged_df: pd.DataFrame
 ) -> pd.DataFrame:
     """
-    Calculate Real Wage Growth after adjusting
-    for inflation.
+    Calculate Real Wage Growth after adjusting for inflation.
 
-    Formula:
+    Formula
 
         ((1 + Wage Growth / 100)
          /
          (1 + Inflation / 100)
-         - 1) * 100
+         - 1) × 100
     """
 
     logger.info("Calculating Real Wage Growth...")
 
+    # Create a copy of the merged dataset
     df = merged_df.copy()
 
-    # ------------------------------------------------------
-    # Merge Wage Growth
-    # ------------------------------------------------------
-
-    df = df.merge(
-        annual_wage_growth[
-            ["Year", "Annual Wage Growth (%)"]
-        ],
-        on="Year",
-        how="left"
-    )
-
-    # ------------------------------------------------------
-    # Merge Inflation
-    # ------------------------------------------------------
-
-    df = df.merge(
-        annual_inflation[
-            ["Year", "Annual Inflation Rate (%)"]
-        ],
-        on="Year",
-        how="left"
-    )
-
-    # ------------------------------------------------------
     # Ensure numeric columns
-    # ------------------------------------------------------
-
     numeric_columns = [
         "Average CPI",
         "Average Hourly Wage",
@@ -438,10 +409,7 @@ def calculate_real_wage_growth(
             errors="coerce"
         )
 
-    # ------------------------------------------------------
-    # Real Wage Growth
-    # ------------------------------------------------------
-
+    # Calculate Real Wage Growth
     df["Real Wage Growth (%)"] = (
         (
             (1 + df["Annual Wage Growth (%)"] / 100)
@@ -454,3 +422,132 @@ def calculate_real_wage_growth(
     logger.info("Real Wage Growth calculated.")
 
     return df
+
+def reshape_employment_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Reshape Employment dataset from wide format to long format.
+    """
+
+    logger.info("Reshaping Employment dataset...")
+
+    month_columns = list(df.columns[1:13])
+
+    employment = df.melt(
+        id_vars="Year",
+        value_vars=month_columns,
+        var_name="Month",
+        value_name="Employment"
+    )
+
+    employment["Employment"] = pd.to_numeric(
+        employment["Employment"],
+        errors="coerce"
+    )
+
+    logger.info(
+        f"Employment reshaped to {len(employment)} rows."
+    )
+
+    return employment
+
+
+def calculate_annual_average_employment(
+    df: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Calculate Annual Average Employment.
+    """
+
+    logger.info(
+        "Calculating Annual Average Employment..."
+    )
+
+    annual = (
+        df.groupby("Year", as_index=False)["Employment"]
+        .mean()
+    )
+
+    annual.rename(
+        columns={
+            "Employment": "Average Employment"
+        },
+        inplace=True
+    )
+
+    annual["Average Employment"] = (
+        annual["Average Employment"]
+        .round(2)
+    )
+
+    logger.info(
+        f"Created Annual Employment table ({len(annual)} rows)."
+    )
+
+    return annual
+
+def reshape_unemployment_data(
+    df: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Reshape Unemployment dataset from wide format to long format.
+    """
+
+    logger.info(
+        "Reshaping Unemployment dataset..."
+    )
+
+    month_columns = list(df.columns[1:13])
+
+    unemployment = df.melt(
+        id_vars="Year",
+        value_vars=month_columns,
+        var_name="Month",
+        value_name="Unemployment Rate"
+    )
+
+    unemployment["Unemployment Rate"] = pd.to_numeric(
+        unemployment["Unemployment Rate"],
+        errors="coerce"
+    )
+
+    logger.info(
+        f"Unemployment reshaped to {len(unemployment)} rows."
+    )
+
+    return unemployment
+
+
+def calculate_annual_average_unemployment(
+    df: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Calculate Annual Average Unemployment Rate.
+    """
+
+    logger.info(
+        "Calculating Annual Average Unemployment..."
+    )
+
+    annual = (
+        df.groupby("Year", as_index=False)["Unemployment Rate"]
+        .mean()
+    )
+
+    annual.rename(
+        columns={
+            "Unemployment Rate":
+            "Average Unemployment Rate"
+        },
+        inplace=True
+    )
+
+    annual["Average Unemployment Rate"] = (
+        annual["Average Unemployment Rate"]
+        .round(2)
+    )
+
+    logger.info(
+        f"Created Annual Unemployment table ({len(annual)} rows)."
+    )
+
+    return annual
