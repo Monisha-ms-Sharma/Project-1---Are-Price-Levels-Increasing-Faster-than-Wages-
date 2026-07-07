@@ -811,7 +811,7 @@ Potential improvements include:
 
 Business Intelligence & Data Analytics Professional
 
-Graduate Student — M.S. Information Systems (Business Intelligence)
+Graduate Student — M.S. Analytics, M.S. Information Systems (Business Intelligence)
 
 Specializing in:
 
