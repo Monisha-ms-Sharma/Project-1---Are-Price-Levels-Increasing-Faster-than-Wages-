@@ -134,44 +134,41 @@ The pipeline is fully automated and can be executed with a single command:
 python main.py
 ```
 
-The execution flow is shown below.
+---
 
-```text
-Load Data
-     │
-     ▼
-Parse BLS Reports
-     │
-     ▼
-Feature Engineering
-     │
-     ▼
-Employment & Unemployment Analysis
-     │
-     ▼
-Dashboard KPI Generation
-     │
-     ▼
-Statistical Analysis
-     │
-     ▼
-Correlation Analysis
-     │
-     ▼
-Business Insights
-     │
-     ▼
-Executive Report
-     │
-     ▼
-Visualizations
-     │
-     ▼
-Correlation Heatmap
-     │
-     ▼
-Executive PDF Report
+# Pipeline Workflow
+
+The Pipeline Workflow illustrates the complete end-to-end execution sequence of the analytics pipeline. Starting with official U.S. Bureau of Labor Statistics (BLS) datasets, the pipeline automatically performs data ingestion, report parsing, feature engineering, statistical analysis, business insight generation, visualization creation, and executive report generation.
+
+The entire workflow can be executed with a single command:
+
+```bash
+python main.py
 ```
+
+Each stage produces intermediate analytical outputs that feed the next stage, ultimately generating publication-quality reports, visualizations, dashboard metrics, and executive insights.
+
+<p align="center">
+  <a href="images/workflow/pipeline_workflow_diagram.png">
+    <img
+      src="images/workflow/pipeline_workflow_diagram.png"
+      alt="Pipeline Workflow Diagram"
+      width="1000">
+  </a>
+</p>
+
+**Workflow Highlights**
+
+- 📥 Automated loading of official BLS datasets
+- 📄 Parsing and validation of economic reports
+- ⚙️ Feature engineering and business metric calculations
+- 📊 Dashboard KPI generation
+- 📈 Statistical and correlation analysis
+- 💡 Executive business insight generation
+- 📉 Automated visualization creation
+- 📝 Executive report generation
+- 📕 Publication-quality PDF report creation
+- ✅ Fully automated end-to-end analytics pipeline
 
 ---
 
