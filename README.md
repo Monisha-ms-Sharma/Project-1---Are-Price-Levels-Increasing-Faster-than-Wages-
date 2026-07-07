@@ -240,6 +240,78 @@ All generated figures are stored in the `images/` directory.
 
 ---
 
+# Key Findings
+
+The analysis of official U.S. Bureau of Labor Statistics (BLS) data provides several important insights into the relationship between inflation, wages, employment, and purchasing power in the United States.
+
+## Executive Summary
+
+The project demonstrates how macroeconomic indicators can be transformed into actionable business intelligence through an automated analytics pipeline. By integrating inflation, wage, employment, and unemployment data, the analysis highlights the impact of inflation on real wages and purchasing power over time.
+
+---
+
+## Key Business Insights
+
+### Inflation Trends
+
+- Annual inflation rates fluctuated significantly during the analysis period.
+- Periods of elevated inflation placed downward pressure on consumers' purchasing power.
+- Inflation remained one of the primary drivers affecting real wage growth.
+
+---
+
+### Wage Growth
+
+- Average hourly wages generally increased throughout the analysis period.
+- Wage growth was not always sufficient to offset inflation.
+- Nominal wage increases did not necessarily translate into higher purchasing power.
+
+---
+
+### Purchasing Power
+
+- Real Wage Growth provides a more meaningful measure of economic well-being than nominal wage growth alone.
+- Years with negative Real Wage Growth indicate that inflation outpaced wage increases.
+- Years with positive Real Wage Growth indicate improvements in purchasing power.
+
+---
+
+### Labor Market
+
+- Employment and unemployment trends provide additional context for interpreting wage growth.
+- Strong labor markets often coincided with sustained wage growth.
+- Employment indicators complement inflation and wage analysis when evaluating overall economic conditions.
+
+---
+
+### Statistical Analysis
+
+The project automatically performs statistical analysis including:
+
+- Descriptive statistics
+- Correlation analysis
+- Feature engineering
+- Business KPI generation
+
+These analyses provide quantitative support for executive decision-making.
+
+---
+
+## Business Value
+
+This project demonstrates how publicly available economic data can be transformed into decision-ready information for:
+
+- Business Executives
+- Financial Analysts
+- Business Intelligence Teams
+- Data Analysts
+- Economists
+- Policy Analysts
+
+The automated pipeline reduces manual analysis while producing consistent, repeatable, and publication-quality analytical outputs.
+
+---
+
 # Repository Structure
 
 ```text
@@ -436,24 +508,6 @@ The project automatically creates several reports.
 | Data Profile Report | Data quality and profiling information |
 
 All reports are generated automatically during pipeline execution.
-
----
-
-# Visualizations
-
-The project automatically generates the following charts.
-
-| Visualization | Output |
-|---------------|--------|
-| Annual CPI Trend | `annual_average_cpi.png` |
-| Annual Wage Trend | `annual_average_wage.png` |
-| Inflation Rate Trend | `annual_inflation_rate.png` |
-| Wage Growth Trend | `annual_wage_growth.png` |
-| Inflation vs Wage Growth | `inflation_vs_wage_growth.png` |
-| Real Wage Growth | `real_wage_growth.png` |
-| Employment Trend | `annual_employment.png` |
-| Unemployment Trend | `annual_unemployment.png` |
-| Correlation Heatmap | `correlation_heatmap.png` |
 
 ---
 
