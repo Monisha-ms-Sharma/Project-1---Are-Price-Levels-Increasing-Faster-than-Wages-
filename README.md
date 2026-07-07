@@ -2,14 +2,110 @@
 
 ### End-to-End Business Analytics Case Study using Python, SQL, Statistical Analysis, Data Visualization & Executive Reporting
 
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![SQL](https://img.shields.io/badge/SQL-Analytics-green)
-![REST API](https://img.shields.io/badge/REST-API-orange)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-success)
-![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-orange)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-red)
-![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Charts-purple)
-![Status](https://img.shields.io/badge/Project-In%20Progress-yellow)
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Complete-success)
+![Version](https://img.shields.io/badge/Version-v1.0-blue)
+![GitHub last commit](https://img.shields.io/github/last-commit/Monisha-ms-Sharma/U.S.-Inflation-Wage-Growth-Purchasing-Power-Analysis-An-End-to-End-Business-Analytics-Case-Study)
+![GitHub repo size](https://img.shields.io/github/repo-size/Monisha-ms-Sharma/U.S.-Inflation-Wage-Growth-Purchasing-Power-Analysis-An-End-to-End-Business-Analytics-Case-Study)
+
+## 📌 Project Highlights
+
+| Feature | Details |
+|----------|----------|
+| Programming Language | Python 3.12 |
+| Data Source | U.S. Bureau of Labor Statistics (BLS) |
+| Official Datasets | 6 |
+| Analytics Pipeline | Fully Automated |
+| Statistical Analysis | Descriptive Statistics & Correlation |
+| Business Insights | Automated |
+| Executive Reporting | PDF Generation |
+| Visualizations | 9+ Charts |
+| Testing | Unit & Integration Tests |
+| Architecture | Modular |
+| Entry Point | `python main.py` |
+| License | MIT |
+
+## 🛠 Technology Stack
+
+| Area | Technologies |
+|------|--------------|
+| Programming | Python |
+| Analytics | Pandas |
+| Visualization | Matplotlib |
+| Reporting | ReportLab |
+| Data Source | BLS |
+| Version Control | Git & GitHub |
+| IDE | VS Code / GitHub Codespaces |
+
+# Skills Demonstrated
+
+This project demonstrates practical experience with:
+
+### Programming
+
+- Python
+
+### Data Engineering
+
+- ETL Pipelines
+- Data Cleaning
+- Feature Engineering
+
+### Data Analytics
+
+- Statistical Analysis
+- Business Analytics
+- KPI Development
+
+### Data Visualization
+
+- Matplotlib
+- Correlation Analysis
+
+### Reporting
+
+- Executive Reporting
+- PDF Generation
+
+### Software Engineering
+
+- Modular Design
+- Logging
+- Automated Testing
+- Git Version Control
+
+### Business Intelligence
+
+- Dashboard Metrics
+- Business Insights
+- Decision Support
+
+# Table of Contents
+
+- Project Overview
+- Business Problem
+- Project Objectives
+- Project Highlights
+- Technology Stack
+- Project Architecture
+- Pipeline Workflow
+- Featured Visualizations
+- Key Findings
+- Data Sources
+- Feature Engineering
+- Statistical Analysis
+- Business Insights
+- Reports Generated
+- Installation
+- Running the Project
+- Testing
+- Skills Demonstrated
+- Future Enhancements
+- About the Author
+- License
 
 ## Project Overview
 
@@ -78,36 +174,6 @@ The primary objectives of this project are to:
 ✔ Logging
 
 ✔ Automated Testing
-
----
-
-# Project Highlights
-
-- **Programming Language:** Python
-- **Data Source:** U.S. Bureau of Labor Statistics (BLS)
-- **Architecture:** Modular Analytics Pipeline
-- **Reporting:** Executive PDF Report
-- **Visualization:** Matplotlib
-- **Statistical Analysis:** Pandas
-- **Testing:** Python Test Suite
-- **Version Control:** Git & GitHub
-
----
-
-# Technology Stack
-
-| Category | Technologies |
-|----------|--------------|
-| Programming Language | Python 3.12 |
-| Data Processing | Pandas |
-| Data Visualization | Matplotlib |
-| Statistical Analysis | Pandas Statistics |
-| PDF Reporting | ReportLab |
-| Data Source | U.S. Bureau of Labor Statistics (BLS) |
-| Version Control | Git & GitHub |
-| IDE | Visual Studio Code / GitHub Codespaces |
-| Documentation | Markdown |
-| Testing | Python Test Modules |
 
 ---
 
@@ -800,6 +866,20 @@ See the LICENSE file for additional information.
 
 **Executive Reporting:** Automated
 
+---
+# Repository Statistics
+
+| Metric | Value |
+|---------|------:|
+| Python Modules | 16 |
+| Test Modules | 19 |
+| SQL Scripts | 3 |
+| Notebooks | 6 |
+| Reports Generated | 4 |
+| Visualizations | 9 |
+| Architecture Diagrams | 2 |
+| Lines of Python Code | 4,000+ |
+| End-to-End Pipeline | Yes |
 ---
 
 # Contact
