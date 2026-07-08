@@ -11,6 +11,8 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Monisha-ms-Sharma/U.S.-Inflation-Wage-Growth-Purchasing-Power-Analysis-An-End-to-End-Business-Analytics-Case-Study)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Monisha-ms-Sharma/U.S.-Inflation-Wage-Growth-Purchasing-Power-Analysis-An-End-to-End-Business-Analytics-Case-Study)
 
+---
+
 ## 📌 Project Highlights
 
 | Feature | Details |
@@ -28,6 +30,8 @@
 | Entry Point | `python main.py` |
 | License | MIT |
 
+---
+
 ## 🛠 Technology Stack
 
 | Area | Technologies |
@@ -40,48 +44,7 @@
 | Version Control | Git & GitHub |
 | IDE | VS Code / GitHub Codespaces |
 
-# Skills Demonstrated
-
-This project demonstrates practical experience with:
-
-### Programming
-
-- Python
-
-### Data Engineering
-
-- ETL Pipelines
-- Data Cleaning
-- Feature Engineering
-
-### Data Analytics
-
-- Statistical Analysis
-- Business Analytics
-- KPI Development
-
-### Data Visualization
-
-- Matplotlib
-- Correlation Analysis
-
-### Reporting
-
-- Executive Reporting
-- PDF Generation
-
-### Software Engineering
-
-- Modular Design
-- Logging
-- Automated Testing
-- Git Version Control
-
-### Business Intelligence
-
-- Dashboard Metrics
-- Business Insights
-- Decision Support
+---
 
 # Table of Contents
 
@@ -106,6 +69,8 @@ This project demonstrates practical experience with:
 - Future Enhancements
 - About the Author
 - License
+
+---
 
 ## Project Overview
 
@@ -148,31 +113,18 @@ The primary objectives of this project are to:
 # Key Features
 
 ✔ Automated Data Loading
-
 ✔ Report Parsing
-
 ✔ Feature Engineering
-
 ✔ Statistical Analysis
-
 ✔ Correlation Analysis
-
 ✔ Business Insights Generation
-
 ✔ Dashboard KPI Creation
-
 ✔ Executive Report Generation
-
 ✔ Executive PDF Report
-
 ✔ Data Visualizations
-
 ✔ Correlation Heatmap
-
 ✔ Modular Project Architecture
-
 ✔ Logging
-
 ✔ Automated Testing
 
 ---
@@ -712,8 +664,6 @@ Stored in:
 reports/
 ```
 
----
-
 ## Charts
 
 Generated visualizations include:
@@ -734,8 +684,6 @@ Stored in:
 images/
 ```
 
----
-
 ## Logs
 
 Complete execution logs are written to:
@@ -754,35 +702,40 @@ This project demonstrates practical experience with:
 
 - Python
 
-### Data Analysis
+### Data Engineering
 
-- Pandas
+- ETL Pipelines
+- Data Cleaning
 - Feature Engineering
+
+### Data Analytics
+
 - Statistical Analysis
+- Business Analytics
+- KPI Development
 
 ### Data Visualization
 
 - Matplotlib
+- Correlation Analysis
 
-### Data Engineering
+### Reporting
 
-- ETL Pipeline Design
-- Data Cleaning
-- Data Transformation
-
-### Business Analytics
-
-- KPI Development
 - Executive Reporting
-- Business Insights
+- PDF Generation
 
 ### Software Engineering
 
-- Modular Architecture
-- Configuration Management
+- Modular Design
 - Logging
 - Automated Testing
 - Git Version Control
+
+### Business Intelligence
+
+- Dashboard Metrics
+- Business Insights
+- Decision Support
 
 ---
 
@@ -809,9 +762,10 @@ Potential improvements include:
 
 ## Monisha Sharma
 
-Business Intelligence & Data Analytics Professional
+Information Systems — Business Intelligence & Analytics
 
-Graduate Student — M.S. Analytics, M.S. Information Systems (Business Intelligence)
+- Graduate Student of M.S. Analytics (Computational Analytics)
+- Graduated in M.S. Information Systems (Business Intelligence)
 
 Specializing in:
 
@@ -821,7 +775,7 @@ Specializing in:
 - Data Governance
 - SQL
 - Python
-- Power BI
+- BI Tools & Technologies
 - Cloud Analytics
 
 This project was developed as a comprehensive end-to-end portfolio demonstrating modern analytics, data engineering, statistical analysis, visualization, and executive reporting using official U.S. Bureau of Labor Statistics data.
@@ -895,3 +849,5 @@ If you have questions, suggestions, or would like to collaborate, feel free to c
 Thank you for taking the time to explore this project.
 
 I hope it provides a useful example of how data engineering, analytics, statistics, visualization, and business reporting can be combined into a complete end-to-end business analytics solution.
+
+---
