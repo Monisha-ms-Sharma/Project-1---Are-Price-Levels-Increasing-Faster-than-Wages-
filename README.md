@@ -724,7 +724,7 @@ This project demonstrates practical experience with:
 - Executive Reporting
 - PDF Generation
 
-### Software Engineering
+### Systems Engineering
 
 - Modular Design
 - Logging
