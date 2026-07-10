@@ -397,9 +397,9 @@ U.S.-Inflation-Wage-Growth-Purchasing-Power-Analysis
 
 ---
 
-# Software Engineering Features
+# Systems Engineering Features
 
-The project follows several software engineering best practices:
+The project follows several systems engineering best practices:
 
 - Modular architecture
 - Separation of concerns
